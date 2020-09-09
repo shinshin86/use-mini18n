@@ -1,0 +1,23 @@
+{
+  "name": "nextjs-with-typescript",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "type-check": "tsc"
+  },
+  "dependencies": {
+    "next": "latest",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "use-mini18n": "^0.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "^12.12.21",
+    "@types/react": "^16.9.16",
+    "@types/react-dom": "^16.9.4",
+    "typescript": "4.0"
+  },
+  "license": "MIT"
+}
