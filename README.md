@@ -20,6 +20,8 @@ yarn add use-mini18n
 
 This is an example using [Next.js](https://github.com/vercel/next.js/).
 
+See also [examples](https://github.com/shinshin86/use-mini18n/tree/master/examples).
+
 ```jsx
 // pages/_app.jsx
 import { TransProvider } from 'use-mini18n';
