@@ -2,8 +2,8 @@
   "name": "use-mini18n",
   "version": "0.0.1",
   "description": "A simple and minimalistic React hook library for i18n.",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "./dist/use-mini18n.js",
+  "types": "./dist/use-mini18n.d.ts",
   "files": [
     "dist"
   ],
