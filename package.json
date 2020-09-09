@@ -1,0 +1,51 @@
+{
+  "name": "use-mini18n",
+  "version": "0.0.1",
+  "description": "A simple and minimalistic React hook library for i18n.",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "types:check": "tsc --noEmit",
+    "prepublishOnly": "npm run build",
+    "fmt": "prettier --write \"{src,test,examples}/**/*.{ts,tsx}\""
+  },
+  "keywords": [
+    "i18n",
+    "react",
+    "hooks",
+    "internationalization",
+    "localization",
+    "language",
+    "locales"
+  ],
+  "author": "shinshin86 <shinshin86npm@gmail.com> (https://github.com/shinshin86)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shinshin86/use-mini18n.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shinshin86/use-mini18n/issues"
+  },
+  "homepage": "https://github.com/shinshin86/use-mini18n#readme",
+  "prettier": {
+    "singleQuote": true,
+    "useTabs": false,
+    "tabWidth": 2
+  },
+  "devDependencies": {
+    "@types/react": "^16.9.49",
+    "@types/react-dom": "^16.9.8",
+    "prettier": "^2.1.1",
+    "react": "^16.13.1",
+    "typescript": "^4.0.2"
+  },
+  "peerDependencies": {
+    "react": "^16.13.1"
+  }
+}
