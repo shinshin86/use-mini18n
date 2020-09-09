@@ -9,9 +9,9 @@ In that case, I would recommend using another library for i18n.
 ## Install
 
 ```bash
-npm insatll shinshin86/use-mini18n
+npm insatll use-mini18n
 # or
-yarn add shinshin86/use-mini18n
+yarn add use-mini18n
 ```
 
 
