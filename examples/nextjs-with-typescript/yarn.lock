@@ -4607,10 +4607,10 @@ url@^0.11.0:
     punycode "1.3.2"
     querystring "0.2.0"
 
-use-mini18n@^0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/use-mini18n/-/use-mini18n-0.0.2.tgz#f45b40aed02dd0b4ab647664376c45ee7c005bc1"
-  integrity sha512-D7EDkN8ZQguJI9Fw2Rhi4fAggsdsGWCI/B2SOB0pdhEzTNdUzxNB9LOPP70rElhzocvjufaA5UeQNFqHPBDLDw==
+use-mini18n@latest:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/use-mini18n/-/use-mini18n-0.0.3.tgz#9c710e94eed3f7bfde1075d9481ba791846b293b"
+  integrity sha512-2h8wHD2jib+JzYHGCsFlEcwF1phtF0fp7kdotKYCDbufCvcTQ9KLmIavfuoUKDoVyls2rJg+d00DNIIfY604Pg==
 
 use-subscription@1.4.1:
   version "1.4.1"
