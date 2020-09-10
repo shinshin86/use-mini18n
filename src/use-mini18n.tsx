@@ -14,16 +14,26 @@ const detectBrowserLanguage = (navigator: any): string => {
 };
 
 const loadLangSetting = (window: any, langs: string[]): string => {
-  const loadedLang =
-    window.localStorage.getItem('lang') ||
-    detectBrowserLanguage(window.navigator);
+  let loadedLang = '';
+
+  try {
+    loadedLang =
+      (window.localStorage && window.localStorage.getItem('lang')) ||
+      detectBrowserLanguage(window.navigator);
+  } catch (err) {
+    console.error(err);
+  }
 
   const lang = langs.includes(loadedLang) ? loadedLang : DEFAULT_LANG;
   return lang;
 };
 
 const saveLoadSetting = (lang: string, window: any): void => {
-  window.localStorage.setItem('lang', lang);
+  try {
+    window.localStorage && window.localStorage.setItem('lang', lang);
+  } catch (err) {
+    console.error(err);
+  }
 };
 
 export const TransProvider: React.FC<{
