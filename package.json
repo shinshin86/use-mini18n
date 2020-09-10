@@ -12,7 +12,7 @@
     "watch": "tsc --watch",
     "types:check": "tsc --noEmit",
     "prepublishOnly": "npm run build",
-    "fmt": "prettier --write \"{src,test,examples}/**/*.{ts,tsx}\""
+    "fmt": "prettier --write \"{src,test,examples}/**/*.{ts,tsx}\" \"**/*.md\""
   },
   "keywords": [
     "i18n",
