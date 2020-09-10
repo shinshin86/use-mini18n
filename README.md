@@ -4,8 +4,6 @@ A simple and minimalistic React hook library for i18n.
 It is simple but not full of features.
 In that case, I would recommend using another library for i18n.
 
-
-
 ## Install
 
 ```bash
@@ -13,8 +11,6 @@ npm insatll use-mini18n
 # or
 yarn add use-mini18n
 ```
-
-
 
 ## Usage
 
@@ -36,32 +32,28 @@ export default function MyApp({ Component, pageProps }) {
 }
 ```
 
-
-
 This sets the language information required for `i18n.js`.
 
 ```js
 // i18n.js
 const i18n = {
   en: {
-    "Hello Next.js": "Hello Next.js"
+    'Hello Next.js': 'Hello Next.js',
   },
   ja: {
-    "Hello Next.js": "こんにちは Next.js"
-  }
+    'Hello Next.js': 'こんにちは Next.js',
+  },
 };
-  
+
 export default i18n;
 ```
 
-
-
 Use `useI18n`.
 
-* `t` refers to text with selected language.
-* `lang` returns the currently selected language.
-* `langs` returns a list of language information set in `i18n.js`.
-* Change to another language using the `changeLang` function.
+- `t` refers to text with selected language.
+- `lang` returns the currently selected language.
+- `langs` returns a list of language information set in `i18n.js`.
+- Change to another language using the `changeLang` function.
 
 ```jsx
 // pages/index.jsx
@@ -91,10 +83,7 @@ const IndexPage = () => {
 };
 
 export default IndexPage;
-
 ```
-
-
 
 ## Store selected language
 
