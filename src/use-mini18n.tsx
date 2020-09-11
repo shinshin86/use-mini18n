@@ -59,7 +59,11 @@ export const TransProvider: React.FC<{
   };
 
   useEffect(() => {
-    changeLang(loadLangSetting(window, langs));
+    const initLang =
+      defaultLang && langs.includes(defaultLang)
+        ? defaultLang
+        : loadLangSetting(window, langs);
+    changeLang(initLang);
   }, []);
 
   return (
