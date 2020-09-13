@@ -57,6 +57,32 @@ describe('use-mini18n', () => {
       expect(screen.getByText('こんにちは 世界')).toBeInTheDocument();
       expect(screen.getByText('Selected lang: ja')).toBeInTheDocument();
     });
+
+    test('Set defaultLang in nested components (en)', () => {
+      render(
+        <TransProvider i18n={i18n} defaultLang="ja">
+          <TransProvider i18n={i18n} defaultLang="en">
+            <App />
+          </TransProvider>
+        </TransProvider>
+      );
+
+      expect(screen.getByText('hello world')).toBeInTheDocument();
+      expect(screen.getByText('Selected lang: en')).toBeInTheDocument();
+    });
+
+    test('Set defaultLang in nested components (ja)', () => {
+      render(
+        <TransProvider i18n={i18n} defaultLang="en">
+          <TransProvider i18n={i18n} defaultLang="ja">
+            <App />
+          </TransProvider>
+        </TransProvider>
+      );
+
+      expect(screen.getByText('こんにちは 世界')).toBeInTheDocument();
+      expect(screen.getByText('Selected lang: ja')).toBeInTheDocument();
+    });
   });
 
   describe('function of changeLang test', () => {
