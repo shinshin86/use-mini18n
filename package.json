@@ -12,7 +12,8 @@
     "watch": "tsc --watch",
     "types:check": "tsc --noEmit",
     "prepublishOnly": "npm run build",
-    "fmt": "prettier --write \"{src,test,examples}/**/*.{ts,tsx}\" \"**/*.md\""
+    "fmt": "prettier --write \"{src,__test__,examples}/**/*.{ts,tsx}\" \"**/*.md\"",
+    "test": "npm run build && jest"
   },
   "keywords": [
     "i18n",
@@ -39,10 +40,17 @@
     "tabWidth": 2
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.0.2",
+    "@types/jest": "^26.0.13",
     "@types/react": "^16.9.49",
     "@types/react-dom": "^16.9.8",
+    "jest": "^26.4.2",
     "prettier": "^2.1.1",
     "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-test-renderer": "^16.13.1",
+    "ts-jest": "^26.3.0",
     "typescript": "^4.0.2"
   },
   "peerDependencies": {
