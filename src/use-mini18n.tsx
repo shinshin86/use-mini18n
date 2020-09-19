@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext, createContext } from 'react';
 import { ContextProps, ResponseInterface } from './types';
-const DEFAULT_LANG = 'en';
 
 const Context = createContext({} as ContextProps);
 
@@ -13,7 +12,7 @@ const detectBrowserLanguage = (navigator: any): string => {
   );
 };
 
-const loadLangSetting = (window: any, langs: string[]): string => {
+const loadLangSetting = (window: any, langs: string[]): string | false => {
   let loadedLang = '';
 
   try {
@@ -24,8 +23,7 @@ const loadLangSetting = (window: any, langs: string[]): string => {
     console.error(err);
   }
 
-  const lang = langs.includes(loadedLang) ? loadedLang : DEFAULT_LANG;
-  return lang;
+  return langs.includes(loadedLang) && loadedLang;
 };
 
 const saveLoadSetting = (lang: string, window: any): void => {
@@ -45,6 +43,8 @@ export const TransProvider: React.FC<{
     throw new Error('Resources of i18n are Required.');
   }
 
+  const DEFAULT_LANG = Object.keys(i18n)[0];
+
   const langs: string[] = Object.keys(i18n);
 
   const [lang, setLang] = useState(
@@ -62,7 +62,7 @@ export const TransProvider: React.FC<{
     const initLang =
       defaultLang && langs.includes(defaultLang)
         ? defaultLang
-        : loadLangSetting(window, langs);
+        : loadLangSetting(window, langs) || DEFAULT_LANG;
     changeLang(initLang);
   }, []);
 

@@ -39,6 +39,10 @@ This sets the language information required for `i18n.js`.
 ```js
 // i18n.js
 const i18n = {
+  /*
+   * The first language will be set as the default language.
+   * However, it is also possible to set the default language by specifying defaultLang.
+   */
   en: {
     'Hello Next.js': 'Hello Next.js',
   },
