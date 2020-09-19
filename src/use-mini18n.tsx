@@ -49,6 +49,16 @@ export const TransProvider: React.FC<{
     throw new Error('Resources of i18n are Required.');
   }
 
+  if (
+    typeof i18n !== 'object' ||
+    !Object.keys(i18n)[0] ||
+    Array.isArray(i18n)
+  ) {
+    throw new Error(
+      'i18n file is not valid. See here for more information on the format: https://github.com/shinshin86/use-mini18n#usage'
+    );
+  }
+
   const DEFAULT_LANG = Object.keys(i18n)[0];
 
   const langs: string[] = Object.keys(i18n);

@@ -145,11 +145,44 @@ describe('use-mini18n', () => {
     });
   });
 
-  describe('error test', () => {
+  describe('Error test', () => {
     test('Invalid i18n', () => {
       expect(() => {
         render(
           <TransProvider i18n={''}>
+            <App />
+          </TransProvider>
+        );
+      }).toThrow();
+    });
+
+    test('Invalid format i18n', () => {
+      const invalidFormatI18n = 'test';
+      expect(() => {
+        render(
+          <TransProvider i18n={invalidFormatI18n}>
+            <App />
+          </TransProvider>
+        );
+      }).toThrow();
+    });
+
+    test('Invalid format i18n (Array)', () => {
+      const array = ['test'];
+      expect(() => {
+        render(
+          <TransProvider i18n={array}>
+            <App />
+          </TransProvider>
+        );
+      }).toThrow();
+    });
+
+    test('Invalid format i18n (Empty object)', () => {
+      const emptyI18n = {};
+      expect(() => {
+        render(
+          <TransProvider i18n={emptyI18n}>
             <App />
           </TransProvider>
         );
