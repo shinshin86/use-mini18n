@@ -47,6 +47,27 @@ describe('use-mini18n', () => {
       expect(screen.getByText('Selected lang: en')).toBeInTheDocument();
     });
 
+    test('Not specify defaultLang (ja)', () => {
+      const anotherI18n = {
+        ja: {
+          'hello world': 'こんにちは 世界',
+        },
+        en: {
+          'hello world': 'hello world',
+        },
+      };
+
+      // By default, it will try to refer to languages recorded in localStorage, so disable it
+      render(
+        <TransProvider i18n={anotherI18n} enableLocalStorage={false}>
+          <App />
+        </TransProvider>
+      );
+
+      expect(screen.getByText('こんにちは 世界')).toBeInTheDocument();
+      expect(screen.getByText('Selected lang: ja')).toBeInTheDocument();
+    });
+
     test('Specify defaultLang (ja)', () => {
       render(
         <TransProvider i18n={i18n} defaultLang="ja">
@@ -87,8 +108,9 @@ describe('use-mini18n', () => {
 
   describe('function of changeLang test', () => {
     test('Change lang (en -> ja)', () => {
+      // By default, it will try to refer to languages recorded in localStorage, so disable it
       render(
-        <TransProvider i18n={i18n} defaultLang="en">
+        <TransProvider i18n={i18n} enableLocalStorage={false}>
           <App />
         </TransProvider>
       );
@@ -123,11 +145,44 @@ describe('use-mini18n', () => {
     });
   });
 
-  describe('error test', () => {
+  describe('Error test', () => {
     test('Invalid i18n', () => {
       expect(() => {
         render(
           <TransProvider i18n={''}>
+            <App />
+          </TransProvider>
+        );
+      }).toThrow();
+    });
+
+    test('Invalid format i18n', () => {
+      const invalidFormatI18n = 'test';
+      expect(() => {
+        render(
+          <TransProvider i18n={invalidFormatI18n}>
+            <App />
+          </TransProvider>
+        );
+      }).toThrow();
+    });
+
+    test('Invalid format i18n (Array)', () => {
+      const array = ['test'];
+      expect(() => {
+        render(
+          <TransProvider i18n={array}>
+            <App />
+          </TransProvider>
+        );
+      }).toThrow();
+    });
+
+    test('Invalid format i18n (Empty object)', () => {
+      const emptyI18n = {};
+      expect(() => {
+        render(
+          <TransProvider i18n={emptyI18n}>
             <App />
           </TransProvider>
         );

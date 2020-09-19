@@ -39,6 +39,10 @@ This sets the language information required for `i18n.js`.
 ```js
 // i18n.js
 const i18n = {
+  /*
+   * The first language will be set as the default language.
+   * However, it is also possible to set the default language by specifying defaultLang.
+   */
   en: {
     'Hello Next.js': 'Hello Next.js',
   },
@@ -92,3 +96,11 @@ export default IndexPage;
 `use-mini18n` stores the selected language information in `localStorage`.
 
 ![Screen shot of about of store selected language](./images/store-selected-language.png)
+
+It is also possible to disable the use of localStorage by passing an option during initialization.
+
+```jsx
+<TransProvider i18n={i18n} enableLocalStorage={false}>
+  <App />
+</TransProvider>
+```
