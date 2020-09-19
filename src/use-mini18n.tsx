@@ -37,8 +37,14 @@ const saveLoadSetting = (lang: string, window: any): void => {
 export const TransProvider: React.FC<{
   i18n: any;
   defaultLang?: string;
+  enableLocalStorage?: boolean;
   children: any;
-}> = ({ i18n, defaultLang, children }) => {
+}> = ({
+  i18n,
+  defaultLang: specifiedDefaultLang,
+  enableLocalStorage = true,
+  children,
+}) => {
   if (!i18n) {
     throw new Error('Resources of i18n are Required.');
   }
@@ -48,21 +54,30 @@ export const TransProvider: React.FC<{
   const langs: string[] = Object.keys(i18n);
 
   const [lang, setLang] = useState(
-    defaultLang && langs.includes(defaultLang) ? defaultLang : DEFAULT_LANG
+    specifiedDefaultLang && langs.includes(specifiedDefaultLang)
+      ? specifiedDefaultLang
+      : DEFAULT_LANG
   );
   const [text, setText] = useState<any>(i18n[lang]);
 
   const changeLang = (lang: string): void => {
-    saveLoadSetting(lang, window);
+    if (enableLocalStorage) {
+      saveLoadSetting(lang, window);
+    }
+
     setLang(lang);
     setText(i18n[lang]);
   };
 
   useEffect(() => {
+    const defaultLang =
+      (enableLocalStorage && loadLangSetting(window, langs)) || DEFAULT_LANG;
+
     const initLang =
-      defaultLang && langs.includes(defaultLang)
-        ? defaultLang
-        : loadLangSetting(window, langs) || DEFAULT_LANG;
+      specifiedDefaultLang && langs.includes(specifiedDefaultLang)
+        ? specifiedDefaultLang
+        : defaultLang;
+
     changeLang(initLang);
   }, []);
 
