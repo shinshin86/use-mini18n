@@ -1,4 +1,10 @@
-import React, { useState, useEffect, useContext, createContext } from 'react';
+import React, {
+  useState,
+  useEffect,
+  useContext,
+  createContext,
+  useCallback,
+} from 'react';
 import { ContextProps, ResponseInterface } from './types';
 
 const Context = createContext({} as ContextProps);
@@ -79,6 +85,21 @@ export const TransProvider: React.FC<{
     setText(i18n[lang]);
   };
 
+  const getText = useCallback(
+    (key: string, params: any): string => {
+      let t: string = text[key];
+      if (!t) throw new Error('use-mini18n error: Not found key');
+
+      for (const k of Object.keys(params)) {
+        const r = `{${k}}`;
+        t = t.replace(r, params[k]);
+      }
+
+      return t;
+    },
+    [text]
+  );
+
   useEffect(() => {
     const defaultLang =
       (enableLocalStorage && loadLangSetting(window, langs)) || DEFAULT_LANG;
@@ -98,6 +119,7 @@ export const TransProvider: React.FC<{
         langs,
         text,
         changeLang,
+        getText,
       }}
     >
       {children}
@@ -106,6 +128,6 @@ export const TransProvider: React.FC<{
 };
 
 export const useI18n = (): ResponseInterface => {
-  const { text: t, lang, langs, changeLang } = useContext(Context);
-  return { t, lang, langs, changeLang };
+  const { text: t, lang, langs, changeLang, getText } = useContext(Context);
+  return { t, lang, langs, changeLang, getText };
 };
