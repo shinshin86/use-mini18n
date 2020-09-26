@@ -45,9 +45,11 @@ const i18n = {
    */
   en: {
     'Hello Next.js': 'Hello Next.js',
+    'Hello someone': 'Hello {name1} and {name2}',
   },
   ja: {
     'Hello Next.js': 'こんにちは Next.js',
+    'Hello someone': 'こんにちは {name1} と {name2}',
   },
 };
 
@@ -60,6 +62,7 @@ Use `useI18n`.
 - `lang` returns the currently selected language.
 - `langs` returns a list of language information set in `i18n.js`.
 - Change to another language using the `changeLang` function.
+- Get the text dynamically by passing set parameters and text keys to the `getText` function.
 
 ```jsx
 // pages/index.jsx
@@ -67,11 +70,14 @@ import Layout from '../components/Layout';
 import { useI18n } from 'use-mini18n';
 
 const IndexPage = () => {
-  const { t, lang, langs, changeLang } = useI18n();
+  const { t, lang, langs, changeLang, getText } = useI18n();
 
   return (
     <Layout title="Home | Next.js + TypeScript Example">
       <h1>{t['Hello Next.js']} 👋</h1>
+      <h2>
+        {getText('Hello someone', { name1: 'TestUser1', name2: 'TestUser2' })}
+      </h2>
       <p>Selected Language: {lang}</p>
       <select
         name="lang"
