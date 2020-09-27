@@ -2,9 +2,13 @@
 
 [![Build Status](https://travis-ci.org/shinshin86/use-mini18n.svg?branch=master)](https://travis-ci.org/shinshin86/use-mini18n)
 
-A simple and minimalistic React hook library for i18n.
-It is simple but not full of features.
-In that case, I would recommend using another library for i18n.
+![use-mini18n - logo image](./images/logo.png)
+
+<div style="text-align: center;">
+  A <b>simple</b> and <b>minimalistic</b> React hook library for i18n.<br />
+  It is simple but not full of features.<br />
+  In that case, I would recommend using another library for i18n.
+</div>
 
 ## Install
 
