@@ -4,11 +4,11 @@
 
 ![use-mini18n - logo image](./images/logo.png)
 
-<div style="text-align: center;">
+<p align="center">
   A <b>simple</b> and <b>minimalistic</b> React hook library for i18n.<br />
   It is simple but not full of features.<br />
   In that case, I would recommend using another library for i18n.
-</div>
+</p>
 
 ## Install
 
