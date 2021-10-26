@@ -1,10 +1,12 @@
 import { saveLangSetting, loadLangSetting } from '../dist/local-storage';
-import { getLocalStorageMock } from './local-storage-mock';
+import { getLocalStorageMock } from 'local-storage-mock';
 
 describe('local-storage', () => {
   describe('saveLangSetting', () => {
     test('Default key', () => {
-      const window = getLocalStorageMock();
+      const window = {
+        localStorage: getLocalStorageMock(),
+      };
 
       saveLangSetting(window, 'en');
       expect(window.localStorage.getItem('lang')).toBe('en');
@@ -14,7 +16,9 @@ describe('local-storage', () => {
     });
 
     test('Specify key', () => {
-      const window = getLocalStorageMock();
+      const window = {
+        localStorage: getLocalStorageMock(),
+      };
 
       saveLangSetting(window, 'en', 'testkey');
       expect(window.localStorage.getItem('testkey')).toBe('en');
@@ -26,7 +30,9 @@ describe('local-storage', () => {
 
   describe('loadLangSetting', () => {
     test('Default key', () => {
-      const window = getLocalStorageMock();
+      const window = {
+        localStorage: getLocalStorageMock(),
+      };
       const langs = ['en', 'ja'];
 
       saveLangSetting(window, 'en');
@@ -37,7 +43,9 @@ describe('local-storage', () => {
     });
 
     test('Specify key', () => {
-      const window = getLocalStorageMock();
+      const window = {
+        localStorage: getLocalStorageMock(),
+      };
       const langs = ['en', 'ja'];
 
       saveLangSetting(window, 'en', 'testkey');
