@@ -6,49 +6,23 @@ import React, {
   useCallback,
 } from 'react';
 import { ContextProps, ResponseInterface } from './types';
+import { saveLangSetting, loadLangSetting } from './local-storage';
+
+const DEFAULT_LOCAL_STORAGE_KEY = 'lang';
 
 const Context = createContext({} as ContextProps);
-
-const detectBrowserLanguage = (navigator: any): string => {
-  return (
-    (navigator.languages && navigator.languages[0]) ||
-    navigator.language ||
-    navigator.userLanguage ||
-    navigator.browserLanguage
-  );
-};
-
-const loadLangSetting = (window: any, langs: string[]): string | false => {
-  let loadedLang = '';
-
-  try {
-    loadedLang =
-      (window.localStorage && window.localStorage.getItem('lang')) ||
-      detectBrowserLanguage(window.navigator);
-  } catch (err) {
-    console.error(err);
-  }
-
-  return langs.includes(loadedLang) && loadedLang;
-};
-
-const saveLoadSetting = (lang: string, window: any): void => {
-  try {
-    window.localStorage && window.localStorage.setItem('lang', lang);
-  } catch (err) {
-    console.error(err);
-  }
-};
 
 export const TransProvider: React.FC<{
   i18n: any;
   defaultLang?: string;
   enableLocalStorage?: boolean;
+  localStorageKey?: string;
   children: any;
 }> = ({
   i18n,
   defaultLang: specifiedDefaultLang,
   enableLocalStorage = true,
+  localStorageKey = DEFAULT_LOCAL_STORAGE_KEY,
   children,
 }) => {
   if (!i18n) {
@@ -78,7 +52,7 @@ export const TransProvider: React.FC<{
 
   const changeLang = (lang: string): void => {
     if (enableLocalStorage) {
-      saveLoadSetting(lang, window);
+      saveLangSetting(window, lang, localStorageKey);
     }
 
     setLang(lang);
@@ -102,7 +76,8 @@ export const TransProvider: React.FC<{
 
   useEffect(() => {
     const defaultLang =
-      (enableLocalStorage && loadLangSetting(window, langs)) || DEFAULT_LANG;
+      (enableLocalStorage && loadLangSetting(window, langs, localStorageKey)) ||
+      DEFAULT_LANG;
 
     const initLang =
       specifiedDefaultLang && langs.includes(specifiedDefaultLang)
