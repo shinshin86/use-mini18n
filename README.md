@@ -101,16 +101,28 @@ const IndexPage = () => {
 export default IndexPage;
 ```
 
-## Store selected language
+## Store selected language (localStorage)
 
 `use-mini18n` stores the selected language information in `localStorage`.
 
 ![Screen shot of about of store selected language](./images/store-selected-language.png)
 
+### Disable localStorage
+
 It is also possible to disable the use of localStorage by passing an option during initialization.
 
 ```jsx
 <TransProvider i18n={i18n} enableLocalStorage={false}>
+  <App />
+</TransProvider>
+```
+
+### Specify localStorage key
+
+If you want to specify the key for localStorage, initialize it this way.
+
+```jsx
+<TransProvider i18n={i18n} localStorageKey="specifyLocalStorageKey">
   <App />
 </TransProvider>
 ```
