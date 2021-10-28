@@ -8,6 +8,8 @@ import React, {
 import { ContextProps, ResponseInterface } from './types';
 import { saveLangSetting, loadLangSetting } from './local-storage';
 
+const DEFAULT_LOCAL_STORAGE_KEY = 'lang';
+
 const Context = createContext({} as ContextProps);
 
 export const TransProvider: React.FC<{
@@ -20,7 +22,7 @@ export const TransProvider: React.FC<{
   i18n,
   defaultLang: specifiedDefaultLang,
   enableLocalStorage = true,
-  localStorageKey,
+  localStorageKey = DEFAULT_LOCAL_STORAGE_KEY,
   children,
 }) => {
   if (!i18n) {

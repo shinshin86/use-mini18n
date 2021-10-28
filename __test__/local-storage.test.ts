@@ -3,19 +3,7 @@ import { getLocalStorageMock } from 'local-storage-mock';
 
 describe('local-storage', () => {
   describe('saveLangSetting', () => {
-    test('Default key', () => {
-      const window = {
-        localStorage: getLocalStorageMock(),
-      };
-
-      saveLangSetting(window, 'en');
-      expect(window.localStorage.getItem('lang')).toBe('en');
-
-      saveLangSetting(window, 'ja');
-      expect(window.localStorage.getItem('lang')).toBe('ja');
-    });
-
-    test('Specify key', () => {
+    test('When given a key that exists', () => {
       const window = {
         localStorage: getLocalStorageMock(),
       };
@@ -26,23 +14,19 @@ describe('local-storage', () => {
       saveLangSetting(window, 'ja', 'testkey');
       expect(window.localStorage.getItem('testkey')).toBe('ja');
     });
-  });
 
-  describe('loadLangSetting', () => {
-    test('Default key', () => {
+    test('When a non-existent key is given', () => {
       const window = {
         localStorage: getLocalStorageMock(),
       };
-      const langs = ['en', 'ja'];
 
-      saveLangSetting(window, 'en');
-      expect(loadLangSetting(window, langs)).toBe('en');
-
-      saveLangSetting(window, 'ja');
-      expect(loadLangSetting(window, langs)).toBe('ja');
+      saveLangSetting(window, 'en', 'testkey');
+      expect(window.localStorage.getItem('testkey2')).toBeNull();
     });
+  });
 
-    test('Specify key', () => {
+  describe('loadLangSetting', () => {
+    test('When given a key that exists', () => {
       const window = {
         localStorage: getLocalStorageMock(),
       };
@@ -53,6 +37,19 @@ describe('local-storage', () => {
 
       saveLangSetting(window, 'ja', 'testkey');
       expect(loadLangSetting(window, langs, 'testkey')).toBe('ja');
+    });
+
+    test('When a non-existent key is given', () => {
+      const window = {
+        localStorage: getLocalStorageMock(),
+      };
+      const langs = ['en', 'ja'];
+
+      saveLangSetting(window, 'en', 'testkey');
+      expect(loadLangSetting(window, langs, 'testkey2')).toBeFalsy();
+
+      saveLangSetting(window, 'ja', 'testkey');
+      expect(loadLangSetting(window, langs, 'testkey2')).toBeFalsy();
     });
   });
 });

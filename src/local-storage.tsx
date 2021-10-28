@@ -1,13 +1,10 @@
-const DEFAULT_LOCAL_STORAGE_KEY = 'lang';
-
 export const saveLangSetting = (
   window: any,
   lang: string,
-  key?: string
+  key: string
 ): void => {
   try {
-    window.localStorage &&
-      window.localStorage.setItem(key || DEFAULT_LOCAL_STORAGE_KEY, lang);
+    window.localStorage && window.localStorage.setItem(key, lang);
   } catch (err) {
     console.error(err);
   }
@@ -31,8 +28,7 @@ export const loadLangSetting = (
 
   try {
     loadedLang =
-      (window.localStorage &&
-        window.localStorage.getItem(key || DEFAULT_LOCAL_STORAGE_KEY)) ||
+      (window.localStorage && window.localStorage.getItem(key)) ||
       detectBrowserLanguage(window.navigator);
   } catch (err) {
     console.error(err);
