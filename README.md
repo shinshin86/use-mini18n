@@ -126,3 +126,58 @@ If you want to specify the key for localStorage, initialize it this way.
   <App />
 </TransProvider>
 ```
+
+## Development
+
+Test
+
+```sh
+npm run test
+```
+
+Code format
+
+```sh
+test run fmt
+```
+
+### When trying out a version under development in an example app (Next.js)
+
+You can try out the built library with the sample application under the example directory.
+Rewrite the code as shown below.
+(The built library is assumed to be stored in `example/dev-lib`)
+
+```diff
+diff --git a/examples/nextjs-with-typescript/pages/_app.tsx b/examples/nextjs-with-typescript/pages/_app.tsx
+index d07d392..66c97ec 100644
+--- a/examples/nextjs-with-typescript/pages/_app.tsx
++++ b/examples/nextjs-with-typescript/pages/_app.tsx
+@@ -1,4 +1,4 @@
+-import { TransProvider } from 'use-mini18n';
++import { TransProvider } from '../dev-lib/use-mini18n';
+ import i18n from '../i18n';
+ import type { AppProps } from 'next/app';
+
+diff --git a/examples/nextjs-with-typescript/pages/index.tsx b/examples/nextjs-with-typescript/pages/index.tsx
+index a603408..756848f 100644
+--- a/examples/nextjs-with-typescript/pages/index.tsx
++++ b/examples/nextjs-with-typescript/pages/index.tsx
+@@ -1,5 +1,5 @@
+ import Layout from '../components/Layout';
+-import { useI18n } from 'use-mini18n';
++import { useI18n } from '../dev-lib/use-mini18n';
+
+ const IndexPage = () => {
+   const { t, lang, langs, changeLang, getText } = useI18n();
+```
+
+## Licence
+
+[MIT](https://github.com/shinshin86/use-mini18n/blob/master/LICENSE) (except for examples/ directory)
+
+In the example directory, the code Example created with Next.js is stored.
+Please refer to the [Next.js page](https://github.com/vercel/next.js) for the Licence here.
+
+## Author
+
+[Yuki Shindo](https://shinshin86.com)
